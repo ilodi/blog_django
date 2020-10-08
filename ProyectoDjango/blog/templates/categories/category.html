@@ -1,0 +1,16 @@
+{% extends 'layouts/layout.html' %}
+{% block content %}
+<h1 class="title">{{category.name}}</h1> 
+<p>{{category.description}}</p>
+
+{% comment %}
+    como hay una relacion entre articulos y categorias 
+    puedes filtrar desde el include
+  {% include 'articles/articles.html' with articles=category.article_set.all %}  
+{% endcomment %}
+    
+{% include 'articles/articles.html' %}
+
+{% endblock %}
+    
+

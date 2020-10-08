@@ -35,7 +35,8 @@ class Article(models.Model):
     user = models.ForeignKey(User,editable=False, verbose_name="Usuario", on_delete=models.CASCADE)
    # Relacion de uno a muchos
    # primer parametro con que modelo se va relacionar
-    categorys = models.ManyToManyField(Category, verbose_name="Categorias", blank=True)
+   #como combo puedes agregar related_name puedes sustituir el article_set 
+    categorys = models.ManyToManyField(Category, verbose_name="Categorias", blank=True, related_name="articles")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Editado")
 

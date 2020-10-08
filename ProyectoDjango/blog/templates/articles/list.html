@@ -2,43 +2,7 @@
 {% block content %}
 <h1 class="title">{{page.title}}</h1> 
 
-{% for article in articles %}
-<article class="article-item">
-  {# Ver si existe y aparte si es mayor o igual a uno la url #} 
-  {% if article.image != 'null' and article.image.url|length >= 1 %}
-  <div class="image">
-    <img src="{{article.image.url}}" />
-  </div>
-  {% endif %}
-  <div class="data">
-    <h2>{{article.id}} - {{article.title}}</h2>
-    <p>
-    {% for category in article.categorys.all %}
-      <a href="">  {{category}}</a> 
-      
-      {% comment %}
-          Comprobar si el contador es mejor al numero de elementos
-          en el ejemplo es para que en el ultimo elemento no agregemos una coma
-      {% endcomment %}
-        
-      {% if forloop.counter < article.categorys.all|length %}
-        -
-      {% endif %}
-    {% endfor %}
-    <p>
-    <span>
-    {{article.user.first_name}}
-    {{article.user.last_name}}
-    |
-    {{article.created_at}}
-    </span>
-    <p>{{article.content|safe}}</p>
-   
-  </div>
-  <div class="clearfix">
- </div> 
-</article>
-{% endfor %} 
+{% include 'articles/articles.html' %}
 
 {% endblock %}
     
