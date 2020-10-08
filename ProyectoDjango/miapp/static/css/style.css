@@ -170,6 +170,29 @@ nav > ul > li:hover > ul > li:hover a {
   margin: 0 auto;
 }
 
+.box .image{
+  float: left;
+  width: 45%;
+  height: 100%;
+  margin-right: 20px;
+  overflow: hidden;
+}
+.box .image img{
+  width: 100%;
+}
+
+.box a{
+  color: #444;
+  text-decoration: none;
+  transition: all 250ms;
+}
+
+.box a:hover{
+  color: #2ba977;
+  text-decoration: none;
+  transition: all 250ms;
+}
+
 .box form {
   width: 40%;
 }
