@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+#objeto que ayuda a hacer la paginacion
 from django.core.paginator import Paginator
 from .models import Category, Article
 
@@ -16,11 +17,13 @@ def list(request):
    
    
     #recoger el numero de pagina por url
-    #para recoger lo que se manda por la url
+    #para recoger lo que se manda por la url mediante GET
     page = request.GET.get('page')
+    #recoge el valor de la pagina que esta en url
+    page_articles = paginator.get_page(page)
     return render(request, 'articles/list.html', {
         'title': 'Articulos',
-        'articles': articles
+        'articles': 'page_articles'
     })
 
 
