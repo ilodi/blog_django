@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 #formulario por defecto
 from django.contrib.auth.forms import UserCreationForm
+# importat formulario propio
+from .forms import RegisterForm
+
 
 # Create your views here.
 
@@ -15,8 +18,11 @@ def about(request):
     })
 
 def register_page(request):
-    #llamar form
-    register_form = UserCreationForm()
+    #llamar form por defecto
+   # register_form = UserCreationForm()
+
+    #hacer uso de formulario propio
+    register_form = RegisterForm()
 
     #comprovar antes de registrar
     #si hay un methodo post se le mandara a la 
