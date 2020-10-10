@@ -13,7 +13,7 @@ def list(request):
     #para crear un paginador 
     #primero se importa paginator
     #necesita la consulta y el numero de elementos por pagina
-    paginator = Paginator(article, 2)
+    paginator = Paginator(articles, 2)
    
    
     #recoger el numero de pagina por url
@@ -23,7 +23,7 @@ def list(request):
     page_articles = paginator.get_page(page)
     return render(request, 'articles/list.html', {
         'title': 'Articulos',
-        'articles': 'page_articles'
+        'articles': page_articles
     })
 
 

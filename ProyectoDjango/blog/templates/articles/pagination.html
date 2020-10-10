@@ -1,0 +1,36 @@
+<div class="pagination">
+    {% comment %}
+    BTN ANTERIOS
+        comprueba si hay mas articulos si es asi agrega el boton
+    {% endcomment %}
+        
+    {% if articles.has_previous %}
+    {% comment %}
+        si estoy en la pagina uno
+    {% endcomment %}
+        <a href="?page=1">
+         &laquo; Primero
+        </a>
+        {% comment %}
+            obtener el numeor de la pagina
+        {% endcomment %}
+        <a href="?page={{articles.previous_page_number}}">
+         &laquo; anterior
+        </a>
+    {% endif %}
+    <span class="actual">
+        Página {{articles.number}} de {{articles.paginator.num_pages}}
+    </span>
+    {% comment %}
+        BTN Siguiente
+    {% endcomment %}
+      {% if articles.has_next %}
+       <a href="?page={{articles.next_page_number}}">
+        Siguiente
+        </a>
+        <a href="?page={{articles.paginator.num_pages}}">
+         &raquo; última página
+        </a>
+       
+    {% endif %}
+</div>
