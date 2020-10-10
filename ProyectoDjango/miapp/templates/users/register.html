@@ -1,0 +1,15 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}
+ {{title}}
+{% endblock title %}
+{% block content %}
+<form method="post" actions="">
+{% comment %}
+    todos los formularios llevantoken
+{% endcomment %}
+{% csrf_token %}
+ {{register_form.as_p}}
+<input type="submit" value="Registro"/>
+</form>
+{% endblock %}
+    

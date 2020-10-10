@@ -25,7 +25,8 @@
       <ul>
         <li>
           <a href="{% url 'index' %}">Inicio</a>
-        </li>
+        </li> 
+       
         <li>
           <a href="{% url 'list_articles' %}">Categorias</a>
           <ul>
@@ -41,6 +42,9 @@
           <a href="{% url 'page' page.2 %}">{{page.1}}</a>
         </li>
         {% endfor %}
+         <li>
+          <a href="{% url 'registro' %}">Registro</a>
+        </li>
       </ul>
     </nav>
 
