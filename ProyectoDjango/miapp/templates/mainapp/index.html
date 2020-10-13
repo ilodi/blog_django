@@ -1,5 +1,16 @@
 {% extends 'layouts/layout.html' %}
 {% block content %}
 <h1>{{title}}</h1>    
+{% comment %}
+   los mensajes de puedes ver en cualquier parte de la app
+   primero se recomienda verificar si hay y si existen  
+{% endcomment %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success message">
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
 {% endblock %}
     

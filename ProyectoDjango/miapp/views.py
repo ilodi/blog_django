@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+#contrib es el nucleo de django
+#para hacer uso de mensajes flash
+from django.contrib import messages
 #formulario por defecto
 from django.contrib.auth.forms import UserCreationForm
 # importat formulario propio
@@ -34,9 +37,16 @@ def register_page(request):
             #guardas el formulario
             register_form.save()
             #si todo sale bien se redireccionara
+            ##mensajes flash solo duran una actualizacion en pantalla
+            messages.success(request, 'Te has registrado correctamente')
             return redirect('inicio')
 
     return render(request, 'users/register.html',{
        'title':'Registro' ,
        'register_form':register_form
+    })
+
+def login_page(request):
+    return render(request, 'users/login.html',{
+        'title': 'Login'
     })
