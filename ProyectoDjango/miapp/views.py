@@ -6,7 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 # importat formulario propio
 from .forms import RegisterForm
-
+#modulo de autentificacion
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -47,6 +48,26 @@ def register_page(request):
     })
 
 def login_page(request):
+    #logica para login
+    #comprobas lo que llega  
+    if request.method=='POST':
+        #si llega se va a crear un formulario
+        #se identifica por el name de los inputs
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        #crear el metodo de usuario
+        user = authenticate(request, username=username, password=password)
+
+        #si es correcto
+        #is no es un operador de si no esto entonces esto
+        if user is not None:
+            login(request, user)
+            return redirect('inicio')
+        else:
+            #si no funciona un mensaje flash
+            messages.warning(request, 'No te has podido identificar')
+
     return render(request, 'users/login.html',{
         'title': 'Login'
     })

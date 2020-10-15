@@ -12,5 +12,19 @@
         </div>
     {% endfor %}
 {% endif %}
+{% comment %}
+    el usuario esta identificdo
+{% endcomment %}
+{% if user.username %}
+    <h2>Hola, {{user.username}}, {{user.last_name}} </h2>
+    <p>
+        {{user.email}}
+    <p>
+{% else %}
+    <p>
+    No estas identificado
+          <a href="{% url 'login' %}">Login</a>
+    </p>  
+{% endif %}
 {% endblock %}
     

@@ -25,8 +25,8 @@
       <ul>
         <li>
           <a href="{% url 'index' %}">Inicio</a>
-        </li> 
-       
+        </li>
+        {% if user.email %}
         <li>
           <a href="{% url 'list_articles' %}">Categorias</a>
           <ul>
@@ -41,13 +41,14 @@
         <li>
           <a href="{% url 'page' page.2 %}">{{page.1}}</a>
         </li>
-        {% endfor %}
-         <li>
+        {% endfor %} {% else %}
+        <li>
           <a href="{% url 'login' %}">Login</a>
         </li>
-         <li>
+        <li>
           <a href="{% url 'registro' %}">Registro</a>
         </li>
+        {% endif %}
       </ul>
     </nav>
 
