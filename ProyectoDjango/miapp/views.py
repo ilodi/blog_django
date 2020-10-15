@@ -16,6 +16,7 @@ def index(request):
         'title':'Inicio Django'
     })
 
+#decorador antes de que se reinicie
 def about(request):
     return render(request, 'mainapp/about.html',{
         'title':'Sobre nosotros'
@@ -76,3 +77,8 @@ def login_page(request):
 def logout_user(request):
     logout(request)
     return redirect('inicio')
+
+
+
+#un decorador va a hacer una funcion previa antes de ejecutar
+# el codigo de una funcion de una vista
