@@ -71,3 +71,8 @@ def login_page(request):
     return render(request, 'users/login.html',{
         'title': 'Login'
     })
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('inicio')
