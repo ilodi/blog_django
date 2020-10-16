@@ -2,10 +2,12 @@ from django.shortcuts import render, get_object_or_404
 #objeto que ayuda a hacer la paginacion
 from django.core.paginator import Paginator
 from .models import Category, Article
+#decorador
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required(login_url='login')
 def list(request):
     # sacar los articulos
     # consultar
@@ -26,7 +28,7 @@ def list(request):
         'articles': page_articles
     })
 
-
+@login_required(login_url='login')
 def category(request, category_id):
     #category = Category.objects.get(id=category_id)
     # agregar 404
@@ -38,7 +40,7 @@ def category(request, category_id):
         'articles': articles
     })
 
-
+@login_required(login_url='login')
 def article(request, article_id):
     # va a hacer la consulta a Article de su campo id=article_id
     article = get_object_or_404(Article, id=article_id)

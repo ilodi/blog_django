@@ -22,56 +22,65 @@ def about(request):
         'title':'Sobre nosotros'
     })
 
+
 def register_page(request):
-    #llamar form por defecto
-   # register_form = UserCreationForm()
+    #comprobar si el usuario esta identificado
+    if request.user.is_authenticated:
+        return redirect('inicio')
+    else:
+        #llamar form por defecto
+    # register_form = UserCreationForm()
 
-    #hacer uso de formulario propio
-    register_form = RegisterForm()
+        #hacer uso de formulario propio
+        register_form = RegisterForm()
 
-    #comprovar antes de registrar
-    #si hay un methodo post se le mandara a la 
-    #funcion que extiendes del form
-    if request.method == 'POST':
-        register_form = UserCreationForm(request.POST)
-        #si sale correctamente
-        if register_form.is_valid():
-            #guardas el formulario
-            register_form.save()
-            #si todo sale bien se redireccionara
-            ##mensajes flash solo duran una actualizacion en pantalla
-            messages.success(request, 'Te has registrado correctamente')
-            return redirect('inicio')
+        #comprovar antes de registrar
+        #si hay un methodo post se le mandara a la 
+        #funcion que extiendes del form
+        if request.method == 'POST':
+            register_form = UserCreationForm(request.POST)
+            #si sale correctamente
+            if register_form.is_valid():
+                #guardas el formulario
+                register_form.save()
+                #si todo sale bien se redireccionara
+                ##mensajes flash solo duran una actualizacion en pantalla
+                messages.success(request, 'Te has registrado correctamente')
+                return redirect('inicio')
 
-    return render(request, 'users/register.html',{
-       'title':'Registro' ,
-       'register_form':register_form
-    })
+        return render(request, 'users/register.html',{
+        'title':'Registro' ,
+        'register_form':register_form
+        })
 
 def login_page(request):
-    #logica para login
-    #comprobas lo que llega  
-    if request.method=='POST':
-        #si llega se va a crear un formulario
-        #se identifica por el name de los inputs
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+     #comprobar si el usuario esta identificado
+    if request.user.is_authenticated:
+        return redirect('inicio')
+    else:
+        #logica para login
+        #comprobas lo que llega  
+        if request.method=='POST':
+            #si llega se va a crear un formulario
+            #se identifica por el name de los inputs
+            username = request.POST.get('username')
+            password = request.POST.get('password')
 
-        #crear el metodo de usuario
-        user = authenticate(request, username=username, password=password)
+            #crear el metodo de usuario
+            user = authenticate(request, username=username, password=password)
 
-        #si es correcto
-        #is no es un operador de si no esto entonces esto
-        if user is not None:
-            login(request, user)
-            return redirect('inicio')
-        else:
-            #si no funciona un mensaje flash
-            messages.warning(request, 'No te has podido identificar')
+            #si es correcto
+            #is no es un operador de si no esto entonces esto
+            if user is not None:
+                login(request, user)
+                return redirect('inicio')
+            else:
+                #si no funciona un mensaje flash
+                messages.warning(request, 'No te has podido identificar')
 
-    return render(request, 'users/login.html',{
-        'title': 'Login'
-    })
+        return render(request, 'users/login.html',{
+            'title': 'Login'
+        })
 
 
 def logout_user(request):
@@ -79,6 +88,3 @@ def logout_user(request):
     return redirect('inicio')
 
 
-
-#un decorador va a hacer una funcion previa antes de ejecutar
-# el codigo de una funcion de una vista

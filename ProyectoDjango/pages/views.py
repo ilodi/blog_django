@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 
 # decoradores antes de comenzar el metodo
-# parametros a mandar a donde quieres que te lleve
+# parametros a mandar a donde quieres que te lleve si no cumple la 
+# especificacion
 @login_required(login_url="login")
 def page(request, slug):
     # hacer consulta filtrar x = y

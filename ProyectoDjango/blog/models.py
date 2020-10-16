@@ -23,7 +23,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=150, verbose_name="Titulo")
     content = RichTextField(verbose_name="Contenido")
-  #  image = models.ImageField(default='null', verbose_name="Cover", upload_to="articles")
+    image = models.ImageField(default='null', verbose_name="Cover", upload_to="articles")
     public = models.BooleanField(verbose_name="¿Publicado?")
     # Relacion de uno a uno 
     # relacion con modelo Django por defecto
